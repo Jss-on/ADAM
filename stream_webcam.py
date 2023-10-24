@@ -1,18 +1,17 @@
 import logging
 from ultralytics import YOLO
-from ultralytics.nn.autobackend import AutoBackend
 
 # Configure logging
 logging.basicConfig(filename="class_counts.log", level=logging.INFO, filemode="w")
 
 # Load a pretrained YOLOv8n model
-model = YOLO("models/model_v1.pt")
+model = YOLO("models/model_large_v1.pt")
 
 # Define path to video file
 source = "sample.mp4"
 
 # Run inference on the source
-results = model(source, stream=True, conf=0.12, show=True, imgsz=320)
+results = model(source, stream=True, conf=0.12, show=True)
 
 # Thresholds for each class
 thresholds = {0: 0.18, 2: 0.70, 1: 0.7}
